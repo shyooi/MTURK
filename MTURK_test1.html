@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../jspsych.js"></script>
+    <script src="../plugins/jspsych-fullscreen.js"></script>
+    <script src="../plugins/jspsych-video.js"></script>
+    <script src="../plugins/jspsych-video-button-response.js"></script>
+    <script src="../plugins/jspsych-image-button-response.js"></script>
+    <script src="../plugins/jspsych-video-button-response.js"></script>
+    <script src="../plugins/jspsych-html-button-response.js"></script>
+    <link rel="stylesheet" href="../css/jspsych.css"></link>
+  </head>
+  <body></body>
+  <style>
+  #display_stage_background {
+      width: 1000vw;
+      background-color: white;
+      z-index: -1;
+  }
+
+    #display_stage {
+        position: fixed;
+        left: 1vw;
+        top: 1vh;
+        height: 98vh;
+        width: 98vw;
+        color:white;
+        background-color: black;
+        box-shadow: 1px 1px 1px #999;
+        border-radius: 15px;
+        z-index: 0;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+</style>
+
+<div id='display_stage_background'></div>
+<div id='display_stage'></div>
+
+  <script>
+
+  var timeline = [];
+var subject_id = prompt("Enter subject id", "test");
+
+  var fullscreen_trial = {
+    type: 'fullscreen',
+    fullscreen_mode: true
+  }
+
+
+  var pre_trial = {
+    type: 'html-button-response',
+    stimulus: '<div style="max-width:600px; color:white"><p>Please click the button below to start the video.</p></div>',
+    choices: ['Click to begin!']
+  }
+
+  var trial1 = {
+    type: 'video',
+  sources: ['video/MTURK_test.mp4'],
+  //choices: [''],
+  //button_html:'<img src="img/white.png" alt="HTML1 Icon" style="width:10px;height:10px; position: absolute; bottom: 5%; right: 20.5%">' ,
+   //margin_vertical: '-1000px',
+   //margin_horizontal: '1000px',
+//    prompt: '',
+    width: 1200,
+    //height: 650,
+    autoplay: true,
+    //controls: true,
+    start: 0,
+    stop: 19.9,
+  //  rate: 1,
+    //trial_duration: 2000,
+    trial_ends_after_video: true
+    //response_ends_trial: true
+  }
+
+var trial = {
+ type: 'image-button-response',
+  stimulus: 'img/black.png',
+  stimulus_height: 300,
+  stimulus_duration: 5000,
+  //prompt: "<p>Please click above to continue watching</p>",
+  choices: ['Click here to continue'],
+}
+//var trial = {
+  //type: 'html-button-response',
+  //stimulus: '<div style="max-width:600px; color:white"><p>Please click the button below to start the video.</p></div>',
+  //choices: ['Click to continue watching']
+//}
+
+var trial2 = {
+  type: 'video',
+sources: ['video/MTURK_test.mp4'],
+//choices: [''],
+//button_html:'<img src="img/white.png" alt="HTML1 Icon" style="width:10px;height:10px; position: absolute; bottom: 5%; right: 20.5%">' ,
+ //margin_vertical: '-1000px',
+ //margin_horizontal: '1000px',
+//    prompt: '',
+  width: 1200,
+  //height: 1000,
+  autoplay: true,
+  //controls: true,
+  start: 20,
+  stop: 24.9,
+//  rate: 1,
+  //trial_duration: 2000,
+  trial_ends_after_video: true
+  //response_ends_trial: true
+}
+
+
+var trial3 = {
+  type: 'video-button-response',
+  sources: ['video/MTURK_test.mp4'],
+  choices: ['Click here to continue'],
+  button_html: '<button class="jspsych-btn">%choice%!</button>',
+  margin_vertical: '10px',
+  margin_horizontal: '8px',
+  //prompt: 'Please click above to continue watching',
+  width: 1120,
+  //height: 600,
+  autoplay: true,
+  //controls: true,
+  start: 25,
+  stop: 29.9,
+  //rate: 1.5,
+  //trial_duration: 2000,
+
+  response_ends_trial: true
+}
+
+var trial4 = {
+  type: 'video-button-response',
+  sources: ['video/MTURK_test.mp4'],
+  choices: ['Click here to continue'],
+  button_html: '<button class="jspsych-btn">%choice%!</button>',
+  margin_vertical: '10px',
+  margin_horizontal: '8px',
+  //prompt: 'Please click above to continue watching',
+  width: 1120,
+  //height: 600,
+  autoplay: true,
+  //controls: true,
+  start: 30,
+  stop: 34.9,
+  //rate: 1.5,
+  //trial_duration: 2000,
+
+  response_ends_trial: true
+}
+
+var trial5 = {
+  type: 'video',
+sources: ['video/MTURK_test.mp4'],
+//choices: [''],
+//button_html:'<img src="img/white.png" alt="HTML1 Icon" style="width:10px;height:10px; position: absolute; bottom: 5%; right: 20.5%">' ,
+ //margin_vertical: '-1000px',
+ //margin_horizontal: '1000px',
+//    prompt: '',
+  width: 1200,
+  //height: 600,
+  autoplay: true,
+  //controls: true,
+  start: 35,
+  stop: 44.9,
+//  rate: 1,
+  //trial_duration: 2000,
+  trial_ends_after_video: true
+  //response_ends_trial: true
+}
+var trial6 = {
+  type: 'video',
+sources: ['video/MTURK_test.mp4'],
+//choices: [''],
+//button_html:'<img src="img/white.png" alt="HTML1 Icon" style="width:10px;height:10px; position: absolute; bottom: 5%; right: 20.5%">' ,
+ //margin_vertical: '-1000px',
+ //margin_horizontal: '1000px',
+//    prompt: '',
+  width: 1200,
+  //height: 600,
+  autoplay: true,
+  //controls: true,
+  start: 45,
+  stop: 54.9,
+//  rate: 1,
+  //trial_duration: 2000,
+  trial_ends_after_video: true
+  //response_ends_trial: true
+}
+var trial7 = {
+  type: 'video',
+sources: ['video/MTURK_test.mp4'],
+//choices: [''],
+//button_html:'<img src="img/white.png" alt="HTML1 Icon" style="width:10px;height:10px; position: absolute; bottom: 5%; right: 20.5%">' ,
+ //margin_vertical: '-1000px',
+ //margin_horizontal: '1000px',
+//    prompt: '',
+  width: 1200,
+  //height: 600,
+  autoplay: true,
+  //controls: true,
+  start: 55,
+  stop: 64.9,
+//  rate: 1,
+  //trial_duration: 2000,
+  trial_ends_after_video: true
+  //response_ends_trial: true
+}
+
+var trial8 = {
+  type: 'video-button-response',
+  sources: ['video/MTURK_test.mp4'],
+  choices: ['Click here to continue'],
+  button_html: '<button class="jspsych-btn">%choice%!</button>',
+  margin_vertical: '10px',
+  margin_horizontal: '8px',
+  //prompt: 'Please click above to continue watching',
+  width: 1120,
+  //height: 600,
+  autoplay: true,
+  //controls: true,
+  start: 65,
+  stop: 74.9,
+  //rate: 1.5,
+  //trial_duration: 2000,
+
+  response_ends_trial: true
+}
+
+var trial9 = {
+  type: 'video-button-response',
+  sources: ['video/MTURK_test.mp4'],
+  choices: ['Click here to continue'],
+  button_html: '<button class="jspsych-btn">%choice%!</button>',
+  margin_vertical: '10px',
+  margin_horizontal: '8px',
+  //prompt: 'Please click above to continue watching',
+  width: 1120,
+  //height: 600,
+  autoplay: true,
+  //controls: true,
+  start: 75,
+  stop: 84.9,
+  //rate: 1.5,
+  //trial_duration: 2000,
+
+  response_ends_trial: true
+}
+
+  var fullscreen_trial_exit = {
+    type: 'fullscreen',
+    fullscreen_mode: false
+  }
+
+
+
+  jsPsych.init({
+
+    show_preload_progress_bar: true,
+    timeline: [fullscreen_trial, pre_trial, trial, fullscreen_trial_exit],
+      display_element: 'display_stage',
+    on_finish: function(){
+      //jsPsych.data.displayData();
+      jsPsych.data.addProperties({subject: subject_id});
+      jsPsych.data.get().localSave("csv", "MTURK_"+subject_id+".csv");
+  //jsPsych.data.localSave("MTURK_"+subject_id+".csv","csv")
+  //jsPsych.data.dataAsCSV());
+    }
+  });
+
+  </script>
+  </html>
